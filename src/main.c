@@ -1,12 +1,14 @@
 #include "minishell.h"
 
-t_shell	*ft_init_shell(t_shell *shell)
+t_shell	*ft_init_shell(void)
 {
 	t_shell	*shell;
 
-	if (!((t_shell *)malloc(sizeof(t_shell))))
+	if (!(shell = (t_shell *)malloc(sizeof(t_shell))))
 		return (NULL);
 	shell->pt_vir = 0;
+	shell->first_list = 0;
+	shell->size_opt = 0;
 	return (shell);
 }
 
@@ -25,7 +27,7 @@ int		main(int ac, char **av)
 		get_next_line(0, &line);
 		if (line[0] != '\0')
 		{
-			path = ft_parce_line(line, path);
+			path = ft_parce_line(line, shell);
 			ft_putchar('\n');
 		}
 
