@@ -38,7 +38,7 @@ static size_t	ft_size_word(char const *s, char c)
 	size_t	i;
 
 	i = 0;
-	while (s[i] != c)
+	while (s[i] && s[i] != c)
 		i++;
 	return (i);
 }
@@ -70,7 +70,7 @@ char			**ft_strsplit(char const *s, char c)
 		if (split == NULL)
 			return (NULL);
 		l = 0;
-		while (*s != c)
+		while (*s != '\0' && *s != c)
 			split[i][l++] = *s++;
 		split[i++][l] = '\0';
 		s = ft_ptr_move(s, c);

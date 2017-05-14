@@ -119,4 +119,8 @@ void			ft_lstdel(t_lib **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_lib **alst, t_lib *new);
 void			ft_lstiter(t_lib *lst, void (*f)(t_lib *elem));
 t_lib			*ft_lstmap(t_lib *lst, t_lib *(*f)(t_lib *elem));
+int				ft_space(char *s, int i);
+int				ft_word(char *s, int i);
+char			**ft_multisub(char **s, int start, int end);
+int				ft_countstr(char **s, int c);
 #endif

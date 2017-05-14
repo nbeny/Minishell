@@ -33,7 +33,7 @@ N_SRC	=	ft_printf.c		ft_check.c\
 		ft_printf2.c
 
 CC	=	gcc
-CC_FLAG	=	-Wall -Wextra -Werror
+CC_FLAG	=	-g -Wall -Wextra -Werror
 
 T_SRC	=	./src/
 T_INC	=	./include/

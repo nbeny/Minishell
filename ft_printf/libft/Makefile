@@ -43,10 +43,11 @@ N_SRC	=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c\
 		ft_size_putnbr_base.c ft_power.c\
 		ft_wbytelen.c ft_wcharlen.c ft_wstrlen.c\
 		ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c\
-		ft_lstmap.c ft_lstnew.c get_next_line.c
+		ft_lstmap.c ft_lstnew.c get_next_line.c\
+		ft_space.c ft_word.c ft_countstr.c ft_multisub.c
 
 CC	=	gcc
-CC_FLAG	=	-Wall -Wextra -Werror
+CC_FLAG	=	-g -Wall -Wextra -Werror
 
 T_SRC	=	./src/
 T_INC	=	./include/
