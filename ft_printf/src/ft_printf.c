@@ -48,7 +48,7 @@ void			ft_free(t_list *begin_lst)
 	}
 }
 
-int				ft_print_and_free(t_err *e, t_list *begin_lst, t_flag *f)
+int				ft_print_and_free(int fd, t_err *e, t_list *begin_lst, t_flag *f)
 {
 	size_t	ret;
 	t_list	*tmp;
@@ -60,7 +60,7 @@ int				ft_print_and_free(t_err *e, t_list *begin_lst, t_flag *f)
 		while (begin_lst)
 		{
 			ret += begin_lst->i;
-			ft_putnstr(begin_lst->buf, begin_lst->i);
+			ft_putnstr_fd(fd, begin_lst->buf, begin_lst->i);
 			begin_lst = begin_lst->next;
 		}
 	}
@@ -77,7 +77,7 @@ int				ft_print_and_free(t_err *e, t_list *begin_lst, t_flag *f)
 	return ((int)ret);
 }
 
-int				ft_fill_stdout(const char *format, va_list *ap)
+int				ft_fill_stdout(int fd, const char *format, va_list *ap)
 {
 	t_err		e;
 	t_flag		f;
@@ -103,10 +103,10 @@ int				ft_fill_stdout(const char *format, va_list *ap)
 		else if (ft_error_copy(&e, format, &begin_lst) == -1)
 			break ;
 	}
-	return (ft_print_and_free(&e, begin_lst, &f));
+	return (ft_print_and_free(fd, &e, begin_lst, &f));
 }
 
-int				ft_printf(const char *format, ...)
+int				ft_printf(int fd, const char *format, ...)
 {
 	va_list	ap;
 	int		ret;
@@ -114,7 +114,7 @@ int				ft_printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(ap, format);
-	ret = ft_fill_stdout(format, &ap);
+	ret = ft_fill_stdout(fd, format, &ap);
 	va_end(ap);
 	return (ret);
 }

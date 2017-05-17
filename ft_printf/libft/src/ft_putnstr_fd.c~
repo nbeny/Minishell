@@ -1,0 +1,8 @@
+#include "../include/libft.h"
+
+int		ft_putnstr_fd(int fd, char *s, size_t n)
+{
+	if (s)
+		write(1, s, n);
+	return (1);
+}

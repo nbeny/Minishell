@@ -81,9 +81,9 @@ void			ft_wint_to_char(wint_t wchar, t_flag *f);
 /*
 **printf
 */
-int				ft_printf(const char *format, ...);
-int				ft_fill_stdout(const char *format, va_list *ap);
-int				ft_print_and_free(t_err *e, t_list *begin_lst, t_flag *f);
+int				ft_printf(int fd, const char *format, ...);
+int				ft_fill_stdout(int fd, const char *format, va_list *ap);
+int				ft_print_and_free(int fd, t_err *e, t_list *begin_lst, t_flag *f);
 void			ft_check_init(t_flag *f);
 void			ft_init_specs1(t_spec *specs);
 void			ft_init_specs2(t_spec *specs);

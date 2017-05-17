@@ -1,5 +1,23 @@
 #include "minishell.h"
 
+int		ft_listsize(t_env *e)
+{
+	t_env	*s;
+	int		i;
+
+	i = 0;
+	s = e;
+	if (e != NULL)
+	{
+		while (s != NULL)
+		{
+			i++;
+			s = s->next;
+		}
+	}
+	return (i);
+}
+
 int		ft_equal(char *s)
 {
 	int	i;
@@ -15,13 +33,58 @@ int		ft_equal(char *s)
 	return (0);
 }
 
-t_env	*ft_get_env(char **env)
+t_env	*ft_getenv(t_env *e, char *str, int i)
+{
+	t_env	*s;
+
+	s = e;
+	if (e != NULL)
+	{
+		while (s != NULL)
+		{
+			if (!ft_strncmp(s->name, str, i))
+				return (s);
+			s = s->next;
+		}
+	}
+	return (NULL);
+}
+
+char	**ft_list_to_tab(t_env *e)
+{
+	char	**tab;
+	char	*stock;
+	t_env	*s;
+	int		i;
+
+	s = e;
+	if (e == NULL)
+		return (NULL);
+	i = ft_listsize(e);
+	if (!(tab = (char **)malloc(sizeof(char *) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (s != NULL)
+	{
+		stock = ft_strjoin(s->name, "=");
+		tab[i] = ft_strjoin(stock, s->value);
+		ft_strdel(&stock);
+		i++;
+		s = s->next;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+t_env	*ft_tab_to_list(char **env)
 {
 	t_env	*e;
 	t_env	*s;
 	int		i;
 
 	i = 0;
+	if (env == NULL || env[0] == NULL)
+		return (NULL);
 	if (!(e = (t_env *)malloc(sizeof(t_env))))
 		return (NULL);
 	e->name = ft_strsub(env[i], 0, (ft_equal(env[i]) - 1));
