@@ -1,21 +1,22 @@
 #include "minishell.h"
 
-void	ft_freestyle(t_exec *exe)
+void	ft_free_tabstr(char **tab)
 {
-	t_exec	*s;
 	int		i;
 
 	i = 0;
-	s = exe;
-	while (exe->cmd[i] != NULL)
+	if (tab != NULL)
 	{
-		ft_strdel(&(exe->cmd)[i++]);
-		exe->cmd = NULL;
+		if (tab[i] != NULL)
+			while (tab[i] != NULL)
+			{
+				ft_strdel(&tab[i]);
+				tab[i] = NULL;
+				i++;
+			}
+		free(tab);
+		tab = NULL;
 	}
-	free(exe->cmd);
-	exe->cmd = NULL;
-	free(exe);
-	exe = NULL;
 }
 
 t_exec	*ft_cmd_parcing(char *line)

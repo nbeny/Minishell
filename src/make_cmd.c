@@ -118,10 +118,10 @@ int		ft_make_cmd(t_exec *exe, t_env *e)
 	  ft_execute(exe, e);
 	  else if (!ft_strncmp(exe->cmd[0], "unsetenv\0", 9))
 	  ft_execute(exe, e);
-	  else if (!ft_strncmp(exe->cmd[0], "pwd\0", 4))
-	  ft_execute(exe, e);
-	  else if (!ft_strncmp(exe->cmd[0], "cd\0", 3))
-	  ft_execute(exe, e);
+	else if (!ft_strncmp(exe->cmd[0], "pwd\0", 4))
+		ft_execute(exe, e);
+	else if (!ft_strncmp(exe->cmd[0], "cd\0", 3))
+		ft_cd(exe, e);
 	*/
 	else if (!ft_strncmp(exe->cmd[0], "ls\0", 3))
 		ft_ls(exe, e);
@@ -129,10 +129,8 @@ int		ft_make_cmd(t_exec *exe, t_env *e)
 		ft_echo(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "w\0", 2))
 		ft_w(exe, e);
-	/*
-	  else if (!ft_strncmp(exe->cmd[0], "./", 2))
-	  ft_execute(exe, e);
-	*/
+	else if (!ft_strncmp(exe->cmd[0], "./", 2))
+		ft_execute(exe, e);
 	else
 		ft_printf(2, "command not found: %s\n", exe->cmd[0]);
 	return (1);

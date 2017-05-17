@@ -33,7 +33,7 @@ int		ft_equal(char *s)
 	return (0);
 }
 
-t_env	*ft_getenv(t_env *e, char *str, int i)
+char	*ft_getenv(t_env *e, char *str, int i)
 {
 	t_env	*s;
 
@@ -43,7 +43,7 @@ t_env	*ft_getenv(t_env *e, char *str, int i)
 		while (s != NULL)
 		{
 			if (!ft_strncmp(s->name, str, i))
-				return (s);
+				return (s->value);
 			s = s->next;
 		}
 	}
