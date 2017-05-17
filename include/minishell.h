@@ -46,5 +46,10 @@ void	ft_w(t_exec *exe, t_env *e);
 **cmd
 */
 void	ft_cd(t_exec *exe, t_env *e);
+void	ft_pwd(t_exec *exe, t_env *e);
 void	ft_execute(t_exec *exe, t_env *e);
+/*
+**env
+*/
+t_env	*ft_moove_env(t_env *env, char *str, int i);
 #endif

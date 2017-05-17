@@ -120,9 +120,9 @@ int		ft_make_cmd(t_exec *exe, t_env *e)
 	  ft_execute(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "pwd\0", 4))
 		ft_execute(exe, e);
+	*/
 	else if (!ft_strncmp(exe->cmd[0], "cd\0", 3))
 		ft_cd(exe, e);
-	*/
 	else if (!ft_strncmp(exe->cmd[0], "ls\0", 3))
 		ft_ls(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "echo\0", 5))
