@@ -10,12 +10,12 @@ typedef struct	s_env
 	char			*value;
 	int				i;
 	struct s_env	*next;
-}			t_env;
+}				t_env;
 
 typedef struct	s_exec
 {
 	char	**cmd;
-}			t_exec;
+}				t_exec;
 
 /*
 **main
@@ -37,7 +37,7 @@ void	ft_free_tabstr(char **tab);
 /*
 **make
 */
-int		ft_make_cmd(t_exec *exe, t_env *e);
+void	ft_make_cmd(t_exec *exe, t_env *e);
 void	ft_ls(t_exec *exe, t_env *e);
 void	ft_env(t_exec *exe, t_env *e);
 void	ft_echo(t_exec *exe, t_env *e);
@@ -45,11 +45,15 @@ void	ft_w(t_exec *exe, t_env *e);
 /*
 **cmd
 */
-void	ft_cd(t_exec *exe, t_env *e);
+t_env	*ft_cd(t_exec *exe, t_env *e);
 void	ft_pwd(t_exec *exe, t_env *e);
 void	ft_execute(t_exec *exe, t_env *e);
 /*
 **env
 */
 t_env	*ft_moove_env(t_env *env, char *str, int i);
+void	ft_null(t_env *pwd, t_env *oldpwd, t_env *home);
+void	ft_slash(t_exec *exe, t_env *pwd, t_env *oldpwd);
+void	ft_home(t_exec *exe, t_env *pwd, t_env *oldpwd, t_env *home);
+void	ft_modif_path(t_exec *exe, t_env *pwd, t_env *oldpwd);
 #endif
