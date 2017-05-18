@@ -1,5 +1,33 @@
 #include "minishell.h"
 
+t_env	*ft_free_oneenv(t_env *e, t_env *s, t_env *b)
+{
+	t_env	*n;
+
+	n = s->next;
+	if (b == NULL)
+	{
+		if (s != NULL && e != NULL)
+		{
+			ft_strdel(&(s->name));
+			ft_strdel(&(s->value));
+			e = e->next;
+			free(s);
+			s = NULL;
+		}
+	}
+	else
+		if (s != NULL && b != NULL)
+		{
+			ft_strdel(&(s->name));
+			ft_strdel(&(s->value));
+			b->next = n;
+			free(s);
+			s = NULL;
+		}
+	return (e);
+}
+
 void	ft_free_tabstr(char **tab)
 {
 	int		i;

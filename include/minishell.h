@@ -34,6 +34,7 @@ int		ft_listsize(t_env *e);
 */
 t_exec	*ft_cmd_parcing(char *line);
 void	ft_free_tabstr(char **tab);
+t_env	*ft_free_oneenv(t_env *e, t_env *s, t_env *b);
 /*
 **make
 */
@@ -48,6 +49,8 @@ void	ft_w(t_exec *exe, t_env *e);
 t_env	*ft_cd(t_exec *exe, t_env *e);
 void	ft_pwd(t_exec *exe, t_env *e);
 void	ft_execute(t_exec *exe, t_env *e);
+t_env	*ft_setenv(t_exec *exe, t_env *e);
+t_env	*ft_unsetenv(t_exec *exe, t_env *e);
 /*
 **env
 */

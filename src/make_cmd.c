@@ -113,14 +113,12 @@ void	ft_make_cmd(t_exec *exe, t_env *e)
 		exit(EXIT_SUCCESS);
 	else if (!ft_strncmp(exe->cmd[0], "env\0", 4))
 		ft_env(exe, e);
-	/*
 	else if (!ft_strncmp(exe->cmd[0], "setenv\0", 7))
 		e = ft_setenv(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "unsetenv\0", 9))
 		e = ft_unsetenv(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "pwd\0", 4))
-		ft_pwd(e);
-	*/
+		ft_pwd(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "cd\0", 3))
 		e = ft_cd(exe, e);
 	else if (!ft_strncmp(exe->cmd[0], "ls\0", 3))
