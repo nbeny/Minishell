@@ -14,7 +14,8 @@ NAME	=	minishell
 
 N_INC	=	minishell.h
 N_SRC	=	main.c get_env.c parcing.c\
-			make_cmd.c cmd.c env.c
+			make_cmd.c cmd.c env.c\
+			tools.c
 
 CC	=	gcc
 CC_FLAG	=	-g -Wall -Wextra -Werror

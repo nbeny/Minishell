@@ -61,14 +61,10 @@ t_env	*ft_setenv(t_exec *exe, t_env *e)
 			ft_strdel(&(s->value));
 			s->value = ft_strdup(exe->cmd[2]);
 		}
-		if (s == NULL)
-		{
-			if (!(s = (t_env *)malloc(sizeof(t_env))))
-				return (e);
-			s->name = ft_strdup(exe->cmd[1]);
-			s->value = ft_strdup(exe->cmd[2]);
-			s->next = NULL;
-		}
+		else if (s == NULL && exe->cmd[1] != NULL)
+			ft_list_push_back(&e, exe->cmd[1], exe->cmd[2]);
+		else
+			ft_env(exe, e);
 	}
 	return (e);
 }
