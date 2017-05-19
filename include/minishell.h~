@@ -37,9 +37,9 @@ t_env	*ft_free_oneenv(t_env *e, t_env *s, t_env *b);
 /*
 **make
 */
-char	*ft_path_istrue(char **cmd, t_env *e);
-void	ft_execute_path(char *str, char **cmd, t_env *e);
-void	ft_execute(char **cmd, t_env *e);
+char	*ft_path_istrue(t_exec *exe, t_env *e);
+void	ft_execute_path(char *str, t_exec *exe, t_env *e);
+void	ft_execute(t_exec *exe, t_env *e);
 t_env	*ft_make_cmd(t_exec *exe, t_env *e);
 /*
 **bultin

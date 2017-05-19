@@ -77,21 +77,7 @@ t_env	*ft_unsetenv(t_exec *exe, t_env *e)
 
 void	ft_env(t_exec *exe, t_env *e)
 {
-	t_env	*s;
-
-	s = e;
-	if (e != NULL && exe != NULL)
-	{
-		if (exe->cmd[1] == NULL)
-			while (s->next)
-			{
-				ft_printf(0, "%s=%s\n", s->name, s->value);
-				s = s->next;
-			}
-		if (!ft_strncmp(exe->cmd[1], "-i\0", 3))
-			return ;
-		
-	}
+	
 }
 
 void	ft_echo(t_exec *exe)

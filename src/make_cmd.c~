@@ -11,7 +11,7 @@ char	*ft_path_istrue(char **cmd, t_env *e)
 	i = 0;
 	s = ft_moove_env(e, "PATH\0", 5);
 	path = ft_strsplit(s->value, ':');
-	tmp = ft_strjoin("/", cmd[0]);
+	tmp = ft_strjoin("/", exe->cmd[0]);
 	while (path[i] != NULL)
 	{
 		test = ft_strjoin(path[i], tmp);
@@ -38,9 +38,9 @@ void	ft_execute_path(char *str, char **cmd, t_env *e)
 	i = 0;
 	if (pid == -1)
 		exit(EXIT_FAILURE);
-	if (pid == 0 && !access(str, X_OK))
+	if (pid == 0)
 	{
-		status = execve(str, cmd, env);
+		status = execve(str, exe->cmd, env);
 		exit(status);
 	}
 	else
@@ -62,13 +62,13 @@ void    ft_execute(char **cmd, t_env *e)
 	char	*s;
 
 	pid = fork();
-	s = ft_strjoin(ft_getenv(e, "PWD\0", 4), &cmd[0][1]);
+	s = ft_strjoin(ft_getenv(e, "PWD\0", 4), &(exe->cmd)[0][1]);
 	env = ft_list_to_tab(e);
 	if (pid == -1)
 		exit(EXIT_FAILURE);
-	if (pid == 0 && !access(s, X_OK))
+	if (pid == 0 && !access(s, W_OK))
 	{
-		status = execve(s, cmd, env);
+		status = execve(s, exe->cmd, env);
 		exit(status);
 	}
 	else
