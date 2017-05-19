@@ -5,6 +5,7 @@ int		main(int ac, char **av, char **env)
 	char	*line;
 	t_env	*e;
 	t_exec	*exec;
+	t_env	*s;
 
 	(void)ac;
 	(void)av;
@@ -15,6 +16,12 @@ int		main(int ac, char **av, char **env)
 		get_next_line(0, &line);
 		exec = ft_cmd_parcing(line);
 		e = ft_make_cmd(exec, e);
+		s = e;
+		while (s)
+		{
+			ft_printf(0, "%s=%s\n", s->name, s->value);
+			s = s->next;
+		}
 	}
 	return (0);
 }

@@ -24,13 +24,14 @@ t_env	*ft_create_elem(char *name, char *value)
 	if (!(env = (t_env *)malloc(sizeof(t_env))))
 		return (NULL);
 	if (name == NULL)
-		env->name = NULL;
+		env->name = ft_strdup("\0");
 	else
 		env->name = ft_strdup(name);
 	if (value == NULL)
-		env->value = ft_strdup(value);
+		env->value = ft_strdup("\0");
 	else
-		env->next = NULL;
+		env->value = ft_strdup(value);
+	env->next = NULL;
 	return (env);
 }
 
@@ -40,10 +41,11 @@ t_env	*ft_list_push_back(t_env *begin_list, char *name, char *value)
 	t_env	*elem;
 
 	elem = ft_create_elem(name, value);
+	ft_printf(0, "%s = %s\n", elem->name, elem->value);
 	if (begin_list)
 	{
 		tmp = begin_list;
-		while (tmp->next)
+		while (tmp->next && tmp->next->name != NULL)
 			tmp = tmp->next;
 		tmp->next = elem;
 	}

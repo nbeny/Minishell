@@ -51,6 +51,11 @@ t_env	*ft_setenv(t_exec *exe, t_env *e)
 	t_env	*s;
 
 	s = e;
+	if (exe->cmd[1] != NULL && exe->cmd[2] != NULL && exe->cmd[3] != NULL)
+	{
+		ft_printf(2, "%s: too many arguments\n", exe->cmd[0]);
+		return (e);
+	}
 	if (e != NULL && exe != NULL)
 	{
 		if (exe->cmd[1] == NULL)
@@ -83,7 +88,7 @@ t_env	*ft_unsetenv(t_exec *exe, t_env *e)
 		if (s != NULL)
 		{
 			while (b->next != NULL && ft_strncmp(b->next->name, \
-										exe->cmd[1], ft_strlen(exe->cmd[1])))
+												 exe->cmd[1], ft_strlen(exe->cmd[1])))
 				b = b->next;
 			if (b->next != NULL)
 				e = ft_free_oneenv(e, s, b);
