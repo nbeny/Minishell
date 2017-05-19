@@ -8,7 +8,6 @@ typedef struct	s_env
 {
 	char			*name;
 	char			*value;
-	int				i;
 	struct s_env	*next;
 }				t_env;
 
@@ -38,7 +37,7 @@ t_env	*ft_free_oneenv(t_env *e, t_env *s, t_env *b);
 /*
 **make
 */
-void	ft_make_cmd(t_exec *exe, t_env *e);
+t_env	*ft_make_cmd(t_exec *exe, t_env *e);
 void	ft_ls(t_exec *exe, t_env *e);
 void	ft_env(t_exec *exe, t_env *e);
 void	ft_echo(t_exec *exe, t_env *e);
@@ -52,9 +51,8 @@ void	ft_execute(t_exec *exe, t_env *e);
 t_env	*ft_setenv(t_exec *exe, t_env *e);
 t_env	*ft_unsetenv(t_exec *exe, t_env *e);
 /*
-**env
+**cd
 */
-t_env	*ft_moove_env(t_env *env, char *str, int i);
 void	ft_null(t_env *pwd, t_env *oldpwd, t_env *home);
 void	ft_slash(t_exec *exe, t_env *pwd, t_env *oldpwd);
 void	ft_home(t_exec *exe, t_env *pwd, t_env *oldpwd, t_env *home);
@@ -62,6 +60,7 @@ void	ft_modif_path(t_exec *exe, t_env *pwd, t_env *oldpwd);
 /*
 **tools
 */
+t_env	*ft_moove_env(t_env *env, char *str, int i);
 t_env	*ft_create_elem(char *name, char *value);
-void	ft_list_push_back(t_env **begin_list, char *name, char *value);
+t_env	*ft_list_push_back(t_env *begin_list, char *name, char *value);
 #endif

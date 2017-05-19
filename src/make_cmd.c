@@ -104,11 +104,10 @@ void	ft_w(t_exec *exe, t_env *e)
 	}
 }
 
-void	ft_make_cmd(t_exec *exe, t_env *e)
+t_env	*ft_make_cmd(t_exec *exe, t_env *e)
 {
-	e->i = 0;
 	if (exe->cmd[0] == NULL)
-		return ;
+		return (e);
 	if (!ft_strncmp(exe->cmd[0], "exit\0", 5))
 		exit(EXIT_SUCCESS);
 	else if (!ft_strncmp(exe->cmd[0], "env\0", 4))
@@ -131,4 +130,5 @@ void	ft_make_cmd(t_exec *exe, t_env *e)
 		ft_execute(exe, e);
 	else
 		ft_printf(2, "command not found: %s\n", exe->cmd[0]);
+	return (e);
 }

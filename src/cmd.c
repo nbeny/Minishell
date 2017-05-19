@@ -53,18 +53,19 @@ t_env	*ft_setenv(t_exec *exe, t_env *e)
 	s = e;
 	if (e != NULL && exe != NULL)
 	{
-		while (s != NULL && !ft_strncmp(s->name, exe->cmd[1],\
-										ft_strlen(exe->cmd[1])))
-			s = s->next;
-		if (s != NULL)
+		if (exe->cmd[1] == NULL)
+		{
+			ft_env(exe, e);
+			return (e);
+		}
+		s = ft_moove_env(e, exe->cmd[1], (ft_strlen(exe->cmd[1]) + 1));
+		if (s == NULL)
+			e = ft_list_push_back(e, exe->cmd[1], exe->cmd[2]);
+		else
 		{
 			ft_strdel(&(s->value));
 			s->value = ft_strdup(exe->cmd[2]);
 		}
-		else if (s == NULL && exe->cmd[1] != NULL)
-			ft_list_push_back(&e, exe->cmd[1], exe->cmd[2]);
-		else
-			ft_env(exe, e);
 	}
 	return (e);
 }
@@ -81,10 +82,11 @@ t_env	*ft_unsetenv(t_exec *exe, t_env *e)
 		s = ft_moove_env(e, exe->cmd[1], ft_strlen(exe->cmd[1]));
 		if (s != NULL)
 		{
-			while (b->next != NULL && !ft_strncmp(b->next->name, \
+			while (b->next != NULL && ft_strncmp(b->next->name, \
 										exe->cmd[1], ft_strlen(exe->cmd[1])))
 				b = b->next;
-			e = ft_free_oneenv(e, s, b);
+			if (b->next != NULL)
+				e = ft_free_oneenv(e, s, b);
 		}
 	}
 	return (e);
