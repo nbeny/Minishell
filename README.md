@@ -1,7 +1,7 @@
-#Project Minishell
->>>> #####exploration project.
+# Project Minishell
+>>>> ##### exploration project.
 
-#####Grade ``(/100)`` ``(/125)*``
+##### Grade ``(/100)`` ``(/125)*``
 --------  -----------------------
 
 Basic:
