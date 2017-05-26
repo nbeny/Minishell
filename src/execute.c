@@ -78,10 +78,7 @@ void	ft_execute(char **cmd, t_env *e)
 	char	*s;
 
 	pid = fork();
-	if (cmd[0][0] != '/')
-		s = ft_strjoin(ft_getenv(e, "PWD\0", 4), &cmd[0][1]);
-	else
-		s = ft_strdup(cmd[0]);
+	s = ft_string_return(e, cmd);
 	env = ft_list_to_tab(e);
 	if (pid == -1)
 		exit(EXIT_FAILURE);
@@ -111,7 +108,6 @@ void	ft_exit(t_exec *exe, t_env *e)
 
 t_env	*ft_make_cmd(t_exec *exe, t_env *e)
 {
-	char	*str;
 	t_exec	*s;
 
 	s = exe;
@@ -131,13 +127,8 @@ t_env	*ft_make_cmd(t_exec *exe, t_env *e)
 			e = ft_cd(s, e);
 		else if (!ft_strncmp(s->cmd[0], "echo\0", 5))
 			ft_echo(s);
-		else if (!ft_strncmp(s->cmd[0], "./", 2) ||\
-				 !ft_strncmp(s->cmd[0], "/", 1))
-			ft_execute(s->cmd, e);
-		else if ((str = ft_path_istrue(s->cmd, e)))
-			ft_execute_path(str, s->cmd, e);
 		else
-			ft_printf(2, "command not found: %s\n", s->cmd[0]);
+			ft_error_and_make_exe(s, e);
 		s = s->next;
 	}
 	return (e);

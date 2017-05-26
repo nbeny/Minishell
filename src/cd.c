@@ -25,7 +25,6 @@ void	ft_old(t_exec *exe, t_env *oldpwd, t_env *pwd)
 		pwd->value = ft_strdup(getcwd(str, (ft_strlen(str) + 1)));
 	}
 	ft_strdel(&str);
-	
 }
 
 void	ft_null(t_env *pwd, t_env *oldpwd, t_env *home)

@@ -18,14 +18,12 @@ t_env	*ft_cd(t_exec *exe, t_env *e)
 	t_env	*pwd;
 	t_env	*oldpwd;
 
-	if (e == NULL)
-		return (NULL);
 	pwd = ft_moove_env(e, "PWD\0", 4);
 	oldpwd = ft_moove_env(e, "OLDPWD\0", 7);
 	home = ft_moove_env(e, "HOME\0", 5);
 	if (exe->cmd[1] != NULL && exe->cmd[2] != NULL)
-		ft_printf(2, "cd: too many arguments");
-	if (exe->cmd[1] == NULL && pwd && oldpwd && home)
+		ft_printf(2, "cd: too many arguments\n");
+	else if (exe->cmd[1] == NULL && pwd && oldpwd && home)
 		ft_null(pwd, oldpwd, home);
 	else if (exe->cmd[1] && exe->cmd[1][0] == '-' && oldpwd && pwd)
 		ft_old(exe, oldpwd, pwd);
@@ -35,10 +33,8 @@ t_env	*ft_cd(t_exec *exe, t_env *e)
 		ft_home(exe, pwd, oldpwd, home);
 	else if (exe->cmd[1] && pwd && oldpwd)
 		ft_modif_path(exe, pwd, oldpwd);
-	else if (pwd == NULL || oldpwd == NULL || home == NULL)
-		ft_printf(2, "cd: setenv PWD, OLDPWD and HOME\n");
 	else
-		ft_printf(2, "cd: no sush file or directory: %s\n", exe->cmd[1]);
+		ft_error_cd(pwd, oldpwd, home, exe);
 	return (e);
 }
 
@@ -109,7 +105,7 @@ void	ft_env(t_exec *exe, t_env *e)
 			exe->i[3] = 1;
 		}
 		else if (!ft_strncmp(exe->cmd[exe->i[0]], "env\0", 4) &&\
-				 (str = ft_path_istrue(&(exe->cmd)[exe->i[0]], s)))
+				(str = ft_path_istrue(&(exe->cmd)[exe->i[0]], s)))
 		{
 			ft_execute_path(str, &(exe->cmd)[exe->i[0]], s);
 			ft_print_env(s, exe->i[2], exe->i[3], 0);

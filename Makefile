@@ -15,7 +15,7 @@ NAME	=	minishell
 N_INC	=	minishell.h
 N_SRC	=	main.c tools.c free.c\
 			execute.c bultin.c cd.c\
-			env.c
+			env.c norme.c
 
 CC	=	gcc
 CC_FLAG	=	-g -Wall -Wextra -Werror

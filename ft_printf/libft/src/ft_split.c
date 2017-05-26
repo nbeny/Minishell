@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbeny <nbeny@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/26 14:08:41 by nbeny             #+#    #+#             */
+/*   Updated: 2017/05/26 14:08:48 by nbeny            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/libft.h"
 
-static size_t	ft_cnt_word(char const *s)
+static size_t			ft_cnt_word(char const *s)
 {
 	int w;
 	int i;
@@ -21,7 +33,7 @@ static size_t	ft_cnt_word(char const *s)
 	return (w);
 }
 
-static size_t	ft_size_word(char const *s)
+static size_t			ft_size_word(char const *s)
 {
 	size_t	i;
 
@@ -38,7 +50,7 @@ static char const		*ft_ptr_move(char const *s)
 	return (s);
 }
 
-char			**ft_split(char const *s)
+char					**ft_split(char const *s)
 {
 	char	**split;
 	size_t	cnt_w;

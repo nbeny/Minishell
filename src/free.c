@@ -98,29 +98,16 @@ void	ft_free_tabstr(char **tab)
 t_exec	*ft_cmd_parcing(char *line)
 {
 	t_exec	*exe;
-	t_exec	*s;
-	int		i;
 	char	**split;
 
-	i = 0;
-	split = ft_strsplit(line, ';');
-	if (split[i] != NULL)
+	exe = NULL;
+	split = NULL;
+	if (line != NULL && line[0] != '\0')
 	{
-		if (!(exe = (t_exec *)malloc(sizeof(t_exec))))
-			return (NULL);
-		exe->cmd = ft_split(split[i]);
-		s = exe;
+		split = ft_strsplit(line, ';');
+		exe = ft_first_struct_exe(split);
+		exe = ft_all_struct_exe(exe, split);
+		ft_free_tabstr(split);
 	}
-	i++;
-	while (split[i] != NULL)
-	{
-		if (!(s->next = (t_exec *)malloc(sizeof(t_exec))))
-			return (NULL);
-		s = s->next;
-		s->cmd = ft_split(split[i]);
-		i++;
-	}
-	ft_free_tabstr(split);
-	s->next = NULL;
 	return (exe);
 }

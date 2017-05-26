@@ -12,10 +12,10 @@
 
 #include "../include/libft.h"
 
-static size_t	ft_cnt_word(char const *s, char c)
+static size_t			ft_cnt_word(char const *s, char c)
 {
-	int w;
-	int i;
+	int		w;
+	int		i;
 
 	i = 0;
 	w = 0;
@@ -33,7 +33,7 @@ static size_t	ft_cnt_word(char const *s, char c)
 	return (w);
 }
 
-static size_t	ft_size_word(char const *s, char c)
+static size_t			ft_size_word(char const *s, char c)
 {
 	size_t	i;
 
@@ -50,7 +50,7 @@ static char const		*ft_ptr_move(char const *s, char c)
 	return (s);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char					**ft_strsplit(char const *s, char c)
 {
 	char	**split;
 	size_t	cnt_w;

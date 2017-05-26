@@ -82,4 +82,13 @@ t_env			*ft_env_opt_i(t_env *e, int size);
 t_env			*ft_add_env(t_exec *exe, t_env *e, int i, int size);
 t_env			*ft_create_elem(char *name, char *value);
 t_env			*ft_list_push_back(t_env *begin_list, char *name, char *value);
+/*
+**norme
+*/
+void			ft_error_cd(t_env *pwd, t_env *oldpwd, t_env *home,\
+							t_exec *exe);
+char			*ft_string_return(t_env *e, char **cmd);
+void			ft_error_and_make_exe(t_exec *exe, t_env *e);
+t_exec			*ft_first_struct_exe(char **split);
+t_exec			*ft_all_struct_exe(t_exec *exe, char **split);
 #endif
