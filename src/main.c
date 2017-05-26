@@ -21,6 +21,22 @@ t_exec	*ft_init_exe(t_exec *exe)
 	return (exe);
 }
 
+t_env	*ft_shlvl(t_env *e)
+{
+	t_env	*shlvl;
+	int		lvl;
+
+	lvl = 0;
+	shlvl = ft_moove_env(e, "SHLVL\0", 6);
+	if (shlvl != NULL)
+	{
+		lvl = ft_atoi(shlvl->value) + 1;
+		ft_strdel(&(shlvl->value));
+		shlvl->value = ft_itoa(lvl);
+	}
+	return (e);
+}
+
 void	ft_print_env(t_env *e, int nb, int i, int free)
 {
 	t_env	*s;
@@ -52,6 +68,7 @@ int		main(int ac, char **av, char **env)
 	if (ac == 1)
 	{
 		e = ft_tab_to_list(env);
+		e = ft_shlvl(e);
 		while (42)
 		{
 			ft_putstr("\033[34;1m$> \033[0m");
