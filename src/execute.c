@@ -111,28 +111,34 @@ void	ft_exit(t_exec *exe, t_env *e)
 
 t_env	*ft_make_cmd(t_exec *exe, t_env *e)
 {
-	char *str;
+	char	*str;
+	t_exec	*s;
 
-	if (exe->cmd[0] == NULL)
-		return (e);
-	if (!ft_strncmp(exe->cmd[0], "exit\0", 5))
-		ft_exit(exe, e);
-	else if (!ft_strncmp(exe->cmd[0], "env\0", 4))
-		ft_env(exe, e);
-	else if (!ft_strncmp(exe->cmd[0], "setenv\0", 7))
-		e = ft_setenv(exe, e);
-	else if (!ft_strncmp(exe->cmd[0], "unsetenv\0", 9))
-		e = ft_unsetenv(exe, e);
-	else if (!ft_strncmp(exe->cmd[0], "cd\0", 3))
-		e = ft_cd(exe, e);
-	else if (!ft_strncmp(exe->cmd[0], "echo\0", 5))
-		ft_echo(exe);
-	else if (!ft_strncmp(exe->cmd[0], "./", 2) ||\
-			!ft_strncmp(exe->cmd[0], "/", 1))
-		ft_execute(exe->cmd, e);
-	else if ((str = ft_path_istrue(exe->cmd, e)))
-		ft_execute_path(str, exe->cmd, e);
-	else
-		ft_printf(2, "command not found: %s\n", exe->cmd[0]);
+	s = exe;
+	while (s != NULL)
+	{
+		if (s->cmd[0] == NULL)
+			return (e);
+		if (!ft_strncmp(s->cmd[0], "exit\0", 5))
+			ft_exit(s, e);
+		else if (!ft_strncmp(s->cmd[0], "env\0", 4))
+			ft_env(s, e);
+		else if (!ft_strncmp(s->cmd[0], "setenv\0", 7))
+			e = ft_setenv(s, e);
+		else if (!ft_strncmp(s->cmd[0], "unsetenv\0", 9))
+			e = ft_unsetenv(s, e);
+		else if (!ft_strncmp(s->cmd[0], "cd\0", 3))
+			e = ft_cd(s, e);
+		else if (!ft_strncmp(s->cmd[0], "echo\0", 5))
+			ft_echo(s);
+		else if (!ft_strncmp(s->cmd[0], "./", 2) ||\
+				 !ft_strncmp(s->cmd[0], "/", 1))
+			ft_execute(s->cmd, e);
+		else if ((str = ft_path_istrue(s->cmd, e)))
+			ft_execute_path(str, s->cmd, e);
+		else
+			ft_printf(2, "command not found: %s\n", s->cmd[0]);
+		s = s->next;
+	}
 	return (e);
 }

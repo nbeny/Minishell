@@ -35,6 +35,8 @@ t_env	*ft_cd(t_exec *exe, t_env *e)
 		ft_home(exe, pwd, oldpwd, home);
 	else if (exe->cmd[1] && pwd && oldpwd)
 		ft_modif_path(exe, pwd, oldpwd);
+	else if (pwd == NULL || oldpwd == NULL || home == NULL)
+		ft_printf(2, "cd: setenv PWD, OLDPWD and HOME\n");
 	else
 		ft_printf(2, "cd: no sush file or directory: %s\n", exe->cmd[1]);
 	return (e);

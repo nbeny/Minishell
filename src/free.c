@@ -14,9 +14,19 @@
 
 void	ft_free_exe(t_exec *exe)
 {
-	ft_free_tabstr(exe->cmd);
-	free(exe);
-	exe = NULL;
+	t_exec	*s;
+	t_exec	*f;
+
+	s = exe;
+	if (exe != NULL)
+		while (s != NULL)
+		{
+			f = s;
+			s = s->next;
+			ft_free_tabstr(f->cmd);
+			free(f);
+			exe = NULL;
+		}
 }
 
 void	ft_free_env(t_env *e)
@@ -88,11 +98,29 @@ void	ft_free_tabstr(char **tab)
 t_exec	*ft_cmd_parcing(char *line)
 {
 	t_exec	*exe;
+	t_exec	*s;
 	int		i;
+	char	**split;
 
 	i = 0;
-	if (!(exe = (t_exec *)malloc(sizeof(t_exec))))
-		return (NULL);
-	exe->cmd = ft_split(line);
+	split = ft_strsplit(line, ';');
+	if (split[i] != NULL)
+	{
+		if (!(exe = (t_exec *)malloc(sizeof(t_exec))))
+			return (NULL);
+		exe->cmd = ft_split(split[i]);
+		s = exe;
+	}
+	i++;
+	while (split[i] != NULL)
+	{
+		if (!(s->next = (t_exec *)malloc(sizeof(t_exec))))
+			return (NULL);
+		s = s->next;
+		s->cmd = ft_split(split[i]);
+		i++;
+	}
+	ft_free_tabstr(split);
+	s->next = NULL;
 	return (exe);
 }

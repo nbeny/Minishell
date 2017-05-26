@@ -25,6 +25,7 @@ typedef struct	s_exec
 {
 	char			**cmd;
 	int				i[4];
+	struct s_exec	*next;
 }				t_exec;
 
 /*
