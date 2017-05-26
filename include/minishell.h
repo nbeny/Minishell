@@ -34,6 +34,7 @@ typedef struct	s_exec
 t_exec			*ft_init_exe(t_exec *exe);
 void			ft_print_env(t_env *e, int nb, int i, int free);
 int				main(int ac, char **av, char **env);
+t_env			*ft_shlvl(t_env *e);
 /*
 **tools
 */
