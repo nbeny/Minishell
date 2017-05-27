@@ -22,8 +22,10 @@ void	ft_old(t_exec *exe, t_env *oldpwd, t_env *pwd)
 		ft_strdel(&(oldpwd->value));
 		oldpwd->value = ft_strdup(pwd->value);
 		ft_strdel(&(pwd->value));
-		pwd->value = ft_strdup(getcwd(str, 1024));
+		pwd->value = getcwd(NULL, 1024);
 	}
+	else
+		ft_printf(2, "cd: no such file or directory: %s\n", exe->cmd[1]);
 	ft_strdel(&str);
 }
 
@@ -33,8 +35,8 @@ void	ft_null(t_env *pwd, t_env *oldpwd, t_env *home)
 	{
 		ft_strdel(&(oldpwd->value));
 		oldpwd->value = ft_strdup(pwd->value);
-		ft_strdel((&pwd->value));
-		pwd->value = ft_strdup(getcwd(home->value, 1024));
+		ft_strdel(&(pwd->value));
+		pwd->value = getcwd(NULL, 1024);
 	}
 }
 
@@ -45,8 +47,10 @@ void	ft_slash(t_exec *exe, t_env *pwd, t_env *oldpwd)
 		ft_strdel(&(oldpwd->value));
 		oldpwd->value = ft_strdup(pwd->value);
 		ft_strdel(&(pwd->value));
-		pwd->value = ft_strdup(getcwd(exe->cmd[1], 1024));
+		pwd->value = getcwd(NULL, 1024);
 	}
+	else
+		ft_printf(2, "cd: no such file or directory: %s\n", exe->cmd[1]);
 }
 
 void	ft_home(t_exec *exe, t_env *pwd, t_env *oldpwd, t_env *home)
@@ -59,8 +63,10 @@ void	ft_home(t_exec *exe, t_env *pwd, t_env *oldpwd, t_env *home)
 		ft_strdel(&(oldpwd->value));
 		oldpwd->value = ft_strdup(pwd->value);
 		ft_strdel(&(pwd->value));
-		pwd->value = ft_strdup(getcwd(str, 1024));
+		pwd->value = getcwd(NULL, 1024);
 	}
+	else
+		ft_printf(2, "cd: no such file or directory: %s\n", exe->cmd[1]);
 	ft_strdel(&str);
 }
 
@@ -77,7 +83,9 @@ void	ft_modif_path(t_exec *exe, t_env *pwd, t_env *oldpwd)
 		ft_strdel(&(oldpwd->value));
 		oldpwd->value = ft_strdup(pwd->value);
 		ft_strdel(&(pwd->value));
-		pwd->value = ft_strdup(getcwd(str, 1024));
+		pwd->value = getcwd(NULL, 1024);
 	}
+	else
+		ft_printf(2, "cd: no such file or directory: %s\n", exe->cmd[1]);
 	ft_strdel(&str);
 }
