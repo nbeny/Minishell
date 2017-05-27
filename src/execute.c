@@ -47,12 +47,10 @@ void	ft_execute_path(char *str, char **cmd, t_env *e)
 	pid_t	w;
 	int		status;
 	char	**env;
-	int		i;
 
 	pid = fork();
 	signal(SIGINT, sig_init);
 	env = ft_list_to_tab(e);
-	i = 0;
 	if (pid == -1)
 		exit(EXIT_FAILURE);
 	if (pid == 0 && !access(str, X_OK))
@@ -93,12 +91,8 @@ void	ft_execute(char **cmd, t_env *e)
 			exit(status);
 		exit(status);
 	}
-	else
-	{
-		w = waitpid(pid, &status, WCONTINUED);
-		if (w == -1)
-			exit(EXIT_FAILURE);
-	}
+	else if ((w = waitpid(pid, &status, WCONTINUED)) == -1)
+		exit(EXIT_FAILURE);
 	ft_free_tabstr(env);
 	ft_strdel(&s);
 }
