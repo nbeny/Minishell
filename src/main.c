@@ -21,6 +21,15 @@ t_exec	*ft_init_exe(t_exec *exe)
 	return (exe);
 }
 
+void	sig_init(int sig)
+{
+	if (sig == SIGINT)
+	{
+		ft_putchar('\n');
+		signal(SIGINT, sig_init);
+	}
+}
+
 t_env	*ft_shlvl(t_env *e)
 {
 	t_env	*shlvl;
@@ -67,6 +76,7 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	if (ac == 1)
 	{
+		signal(SIGINT, sig_init);
 		e = ft_tab_to_list(env);
 		e = ft_shlvl(e);
 		while (42)

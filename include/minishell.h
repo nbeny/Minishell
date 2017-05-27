@@ -14,6 +14,7 @@
 # define MINISHELL_H
 # include "../ft_printf/include/ft_printf.h"
 # include <unistd.h>
+# include <signal.h>
 
 typedef struct	s_env
 {
@@ -32,6 +33,7 @@ typedef struct	s_exec
 **main
 */
 t_exec			*ft_init_exe(t_exec *exe);
+void			sig_init(int sig);
 void			ft_print_env(t_env *e, int nb, int i, int free);
 int				main(int ac, char **av, char **env);
 t_env			*ft_shlvl(t_env *e);
