@@ -49,7 +49,7 @@ void	ft_execute_path(char *str, char **cmd, t_env *e)
 	char	**env;
 
 	pid = fork();
-	signal(SIGINT, sig_init);
+	signal(SIGINT, sig_exe);
 	env = ft_list_to_tab(e);
 	if (pid == -1)
 		exit(EXIT_FAILURE);
@@ -79,7 +79,7 @@ void	ft_execute(char **cmd, t_env *e)
 	char	*s;
 
 	pid = fork();
-	signal(SIGINT, sig_init);
+	signal(SIGINT, sig_exe);
 	s = ft_string_return(e, cmd);
 	env = ft_list_to_tab(e);
 	if (pid == -1)
@@ -126,7 +126,7 @@ t_env	*ft_make_cmd(t_exec *exe, t_env *e)
 		else if (!ft_strncmp(s->cmd[0], "cd\0", 3))
 			e = ft_cd(s, e);
 		else if (!ft_strncmp(s->cmd[0], "echo\0", 5))
-			ft_echo(s);
+			ft_echo(s, e);
 		else
 			ft_error_and_make_exe(s, e);
 		s = s->next;

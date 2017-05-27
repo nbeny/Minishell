@@ -33,7 +33,6 @@ typedef struct	s_exec
 **main
 */
 t_exec			*ft_init_exe(t_exec *exe);
-void			sig_init(int sig);
 void			ft_print_env(t_env *e, int nb, int i, int free);
 int				main(int ac, char **av, char **env);
 t_env			*ft_shlvl(t_env *e);
@@ -68,7 +67,7 @@ t_env			*ft_cd(t_exec *exe, t_env *e);
 t_env			*ft_setenv(t_exec *exe, t_env *e);
 t_env			*ft_unsetenv(t_exec *exe, t_env *e);
 void			ft_env(t_exec *exe, t_env *e);
-void			ft_echo(t_exec *exe);
+void			ft_echo(t_exec *exe, t_env *e);
 /*
 **cd
 */
@@ -94,4 +93,9 @@ char			*ft_string_return(t_env *e, char **cmd);
 void			ft_error_and_make_exe(t_exec *exe, t_env *e);
 t_exec			*ft_first_struct_exe(char **split);
 t_exec			*ft_all_struct_exe(t_exec *exe, char **split);
+/*
+**signal
+*/
+void			sig_init(int sig);
+void			sig_exe(int sig);
 #endif

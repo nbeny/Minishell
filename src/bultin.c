@@ -116,8 +116,9 @@ void	ft_env(t_exec *exe, t_env *e)
 	ft_print_env(s, exe->i[2], exe->i[3], 1);
 }
 
-void	ft_echo(t_exec *exe)
+void	ft_echo(t_exec *exe, t_env *e)
 {
+	t_env	*s;
 	int		i;
 
 	i = 1;
@@ -125,9 +126,18 @@ void	ft_echo(t_exec *exe)
 	{
 		while (exe->cmd[i])
 		{
-			ft_putstr(exe->cmd[i]);
-			if (exe->cmd[i + 1] != NULL)
-				ft_putchar(' ');
+			if (exe->cmd[i] && exe->cmd[i][0] == '$')
+			{
+				s = ft_moove_env(e, &(exe->cmd)[i][1],\
+								ft_strlen(exe->cmd[i]));
+				ft_putstr(s->value);
+			}
+			else
+			{
+				ft_putstr(exe->cmd[i]);
+				if (exe->cmd[i + 1] != NULL)
+					ft_putchar(' ');
+			}
 			i++;
 		}
 		ft_putchar('\n');
