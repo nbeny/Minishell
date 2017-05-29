@@ -14,4 +14,4 @@ Bonus:
 - [X] augmentation du path SHLVL a l appel d un nouveau shell
 - [X] gestion des signaux [ctrl + C]
 - [X] gestions des multicommandes avec le caractère ';'
-- [X] echo $NAME_ENV affiche la value de l environnement
+- [X] echo $
